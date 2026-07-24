@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanmitha Nantur Ganesh — AI/ML &amp; AI Security Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF2F1;
+    --panel:#FFFFFF;
+    --ink:#111827;
+    --ink-soft:#4B5566;
+    --line:#D7DEDC;
+    --signal:#2451B7;
+    --signal-soft:#E6ECFA;
+    --flag:#C9622D;
+    --ok:#1E8F6B;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.55;
+  }
+  a{color:var(--signal);}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{
+    max-width:900px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  /* gutter / line-number motif */
+  .row{
+    display:grid;
+    grid-template-columns:44px 1fr;
+    column-gap:18px;
+  }
+  .ln{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:#9AA6A0;
+    text-align:right;
+    padding-top:4px;
+    user-select:none;
+  }
+  header.hero{
+    padding:72px 0 40px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--signal);
+    margin:0 0 14px;
+  }
+  h1{
+    font-size:clamp(30px,5vw,46px);
+    line-height:1.1;
+    margin:0 0 14px;
+    font-weight:700;
+    letter-spacing:-.01em;
+  }
+  .role{
+    font-size:17px;
+    color:var(--ink-soft);
+    max-width:560px;
+    margin:0 0 26px;
+  }
+  .contact-bar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 18px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+  }
+  .contact-bar a{text-decoration:none; border-bottom:1px solid var(--line);}
+  .contact-bar a:hover{border-color:var(--signal);}
+
+  /* terminal / scan-log signature element */
+  .scanlog{
+    margin-top:34px;
+    background:#0F172A;
+    color:#CFE3D9;
+    border-radius:6px;
+    padding:18px 20px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    overflow:hidden;
+    box-shadow:0 8px 24px rgba(15,23,42,.15);
+  }
+  .scanlog .bar{
+    display:flex; gap:6px; margin-bottom:12px;
+  }
+  .scanlog .dot{width:9px;height:9px;border-radius:50%;background:#3A465C;}
+  .scanline{
+    display:flex; gap:10px; opacity:0; animation:reveal .4s forwards;
+    padding:2px 0;
+  }
+  .scanline .tag{color:#5B7FD9; min-width:120px;}
+  .scanline .ok{color:#4ADE94;}
+  .cursor{
+    display:inline-block; width:7px; height:14px; background:#CFE3D9;
+    animation:blink 1s steps(1) infinite; vertical-align:middle; margin-left:2px;
+  }
+  @keyframes reveal{to{opacity:1;}}
+  @keyframes blink{50%{opacity:0;}}
+
+  section{padding:52px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  h2{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 22px;
+  }
+  .card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:20px 22px;
+    margin-bottom:16px;
+  }
+  .card h3{
+    margin:0 0 4px;
+    font-size:17px;
+  }
+  .card .meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-bottom:10px;
+  }
+  .card p{margin:0; color:var(--ink-soft); font-size:14.5px;}
+  .tagset{
+    display:flex; flex-wrap:wrap; gap:7px; margin-top:12px;
+  }
+  .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    background:var(--signal-soft);
+    color:var(--signal);
+    padding:3px 9px;
+    border-radius:4px;
+  }
+  .tag.flag{background:#FBEAE0; color:var(--flag);}
+
+  .skill-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+  @media(max-width:640px){.skill-grid{grid-template-columns:1fr;}}
+  .skill-cat{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--signal);
+    margin:0 0 6px;
+    text-transform:uppercase;
+    letter-spacing:.06em;
+  }
+  .skill-list{margin:0; font-size:14px; color:var(--ink-soft);}
+
+  .status-line{
+    display:flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin-bottom:8px;
+  }
+  .status-line .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);}
+
+  footer{
+    padding:40px 0 60px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+  }
+  .note{
+    background:var(--signal-soft);
+    border:1px dashed var(--signal);
+    border-radius:6px;
+    padding:14px 16px;
+    font-size:13px;
+    color:var(--signal);
+    margin-top:18px;
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <p class="eyebrow">// ai/ml engineering &middot; ai security &amp; governance</p>
+    <h1>Sanmitha Nantur Ganesh</h1>
+    <p class="role">AI/ML Engineer building production LLM &amp; agentic systems in regulated environments — with hands-on grounding in secure data handling, model governance, and Responsible AI, and applied study of AI security frameworks (OWASP LLM Top 10, MITRE ATLAS, NIST AI RMF).</p>
+    <div class="contact-bar">
+      <a href="mailto:sanmithaganesh3@gmail.com">sanmithaganesh3@gmail.com</a>
+      <a href="https://www.linkedin.com/in/sannugowda/" target="_blank" rel="noopener">linkedin.com/in/sannugowda</a>
+      <a href="https://github.com/Sanmitha-NanturGanesh" target="_blank" rel="noopener">github.com/Sanmitha-NanturGanesh</a>
+      <span>Research Triangle Park, NC — Open to Hybrid</span>
+    </div>
+
+    <div class="scanlog" id="scanlog">
+      <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      <div id="scan-lines"></div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="row">
+      <div class="ln">01</div>
+      <div>
+        <h2>About</h2>
+        <p>4+ years building ML and GenAI systems across healthcare and financial services — from classical fraud/anomaly detection to LLM fine-tuning, RAG pipelines, and multi-agent orchestration. Comfortable operating where AI engineering meets compliance: HIPAA/PHI enforcement, role-based access, audit trails, and model governance reviews are part of my day-to-day, not an afterthought. Currently deepening applied knowledge of AI security frameworks to support secure, trustworthy deployment of LLM and agentic systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="row">
+      <div class="ln">02</div>
+      <div>
+        <h2>Experience</h2>
+
+        <div class="card">
+          <h3>AI/ML Engineer — Elevance Health</h3>
+          <div class="meta">Aug 2025 — Present</div>
+          <p>Built agentic LLM workflows and RAG pipelines (LangChain, Hugging Face, Pinecone/FAISS) over 1M+ healthcare claims records. Enforced HIPAA/PHI compliance via RBAC, data masking, and audit trails across FHIR/HL7 integrations. Automated model observability (MLflow, dbt) — cut data-quality incidents 32%.</p>
+          <div class="tagset">
+            <span class="tag">LangChain</span><span class="tag">RAG</span><span class="tag">Hugging Face</span>
+            <span class="tag flag">HIPAA / PHI</span><span class="tag flag">RBAC &amp; Audit Trails</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>ML Engineer — Accenture</h3>
+          <div class="meta">Feb 2021 — Jul 2024</div>
+          <p>Built fraud &amp; risk detection models (XGBoost, Isolation Forest) on 5M+ financial records, surfacing $2M+ in fraud exposure. Deployed via Docker/Kubernetes with CI/CD; applied model governance and A/B validation before every production rollout.</p>
+          <div class="tagset">
+            <span class="tag">PyTorch</span><span class="tag">XGBoost</span><span class="tag">Docker/K8s</span>
+            <span class="tag flag">Adversarial Pattern Detection</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="row">
+      <div class="ln">03</div>
+      <div>
+        <h2>Selected Projects</h2>
+
+        <div class="card">
+          <h3>Fraud Detection AI System</h3>
+          <p>End-to-end pipeline combining XGBoost, Isolation Forest anomaly detection, and LLM-generated risk summaries to flag adversarial transaction patterns across 5M+ records. 96% precision, real-time monitoring dashboard.</p>
+          <div class="tagset"><span class="tag">Python</span><span class="tag">XGBoost</span><span class="tag">LangChain</span><span class="tag">Tableau</span></div>
+        </div>
+
+        <div class="card">
+          <h3>RAG-Based Clinical Decision Support</h3>
+          <p>Retrieval-augmented LLM assistant with context-grounding safeguards to reduce hallucinated or unsafe outputs in a healthcare Q&amp;A setting. 94% diagnostic accuracy, a 12%+ lift over baseline.</p>
+          <div class="tagset"><span class="tag">RAG</span><span class="tag">FAISS</span><span class="tag">Hugging Face</span></div>
+        </div>
+
+        <div class="card">
+          <h3>Agentic AI Workflow Automation</h3>
+          <p>Multi-agent orchestration system for automated data extraction, validation, and reporting, with fallback handling and output-validation controls aligned to Responsible AI standards. Cut manual processing time 35%.</p>
+          <div class="tagset"><span class="tag">LangChain</span><span class="tag">GPT</span><span class="tag">FastAPI</span><span class="tag flag">Output Validation</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="knowledge">
+    <div class="row">
+      <div class="ln">04</div>
+      <div>
+        <h2>Security &amp; AI Governance Knowledge</h2>
+        <div class="status-line"><span class="dot"></span>OWASP LLM Top 10 &amp; Agentic Top 10 — applied study</div>
+        <div class="status-line"><span class="dot"></span>MITRE ATLAS — applied study</div>
+        <div class="status-line"><span class="dot"></span>NIST AI RMF &amp; ISO/IEC 42001 — applied study</div>
+        <div class="status-line"><span class="dot"></span>HIPAA / PHI compliance, RBAC, audit trails — hands-on, production</div>
+        <div class="status-line"><span class="dot"></span>Model governance &amp; Responsible AI review — hands-on, production</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="row">
+      <div class="ln">05</div>
+      <div>
+        <h2>Skills</h2>
+        <div class="skill-grid">
+          <div>
+            <p class="skill-cat">AI / ML &amp; LLMs</p>
+            <p class="skill-list">LangChain, RAG, Prompt Engineering, Agentic Workflows, Hugging Face Transformers, Fine-Tuning</p>
+          </div>
+          <div>
+            <p class="skill-cat">Programming</p>
+            <p class="skill-list">Python, SQL, Bash, FastAPI, Flask</p>
+          </div>
+          <div>
+            <p class="skill-cat">MLOps &amp; CI/CD</p>
+            <p class="skill-list">Docker, Kubernetes, MLflow, Airflow, Git/GitHub, CI/CD</p>
+          </div>
+          <div>
+            <p class="skill-cat">Cloud &amp; Data</p>
+            <p class="skill-list">AWS, Azure ML/Databricks, Snowflake, PostgreSQL</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="row">
+      <div class="ln">06</div>
+      <div>
+        <p>Built by Sanmitha Nantur Ganesh — last updated 2026.</p>
+        <div class="note">
+          Note: to make this page live, create a repo named <strong>sanmitha-nanturganesh.github.io</strong> on GitHub, upload this file renamed to <strong>index.html</strong>, then enable it under Settings → Pages.
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const lines = [
+    { tag: '[SCAN]', text: 'llm-pipeline/rag-clinical-support', status: 'SECURE ✓' },
+    { tag: '[SCAN]', text: 'agentic-workflow/multi-agent-orchestration', status: 'VALIDATED ✓' },
+    { tag: '[SCAN]', text: 'phi-data-access/rbac-audit-trail', status: 'COMPLIANT ✓' },
+    { tag: '[SCAN]', text: 'fraud-detection/adversarial-pattern-model', status: '96% PRECISION ✓' },
+    { tag: '[STATUS]', text: 'ai-security-knowledge/owasp-mitre-nist', status: 'IN PROGRESS' },
+  ];
+  const container = document.getElementById('scan-lines');
+  lines.forEach((l, i) => {
+    const div = document.createElement('div');
+    div.className = 'scanline';
+    div.style.animationDelay = (i * 0.35) + 's';
+    div.innerHTML = `<span class="tag">${l.tag}</span><span>${l.text}</span><span class="ok" style="margin-left:auto">${l.status}</span>`;
+    container.appendChild(div);
+  });
+  const cursor = document.createElement('span');
+  cursor.className = 'cursor';
+  container.appendChild(cursor);
+</script>
+
+</body>
+</html>
